@@ -3,17 +3,19 @@ set -x
 set -e
 set -u
 
-cd SPIRV-Cross
-
 INSTALL_DIR="${BUILD_PLATFORM}-${CMAKE_BUILD_TYPE}"
 BUILD_DIR="${INSTALL_DIR}-build"
 
-
 mkdir -p "${BUILD_DIR}"
+mkdir -p "${INSTALL_DIR}/bin"
+mkdir -p "${INSTALL_DIR}/lib"
+
 cd "${BUILD_DIR}"
-cmake -G "${CMAKE_GENERATOR}" .. "-DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}" ${CMAKE_OPTIONS}
-cmake --build . --config "${CMAKE_BUILD_TYPE}"
-cmake "-DCMAKE_INSTALL_PREFIX=../${INSTALL_DIR}" "-DBUILD_TYPE=${CMAKE_BUILD_TYPE}" -P cmake_install.cmake
+cp -R ../SPIRV-Cross/. .
+make -j2
 cd ..
+
+cp "${BUILD_DIR}/spirv-cross" "${INSTALL_DIR}/bin/"
+cp "${BUILD_DIR}"/libspirv-cross.* "${INSTALL_DIR}/lib/"
 find "${INSTALL_DIR}"
 

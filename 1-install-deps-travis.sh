@@ -12,14 +12,11 @@ GITHUB_RELEASE_TOOL_VERSION="v1.0.9.1"
 
 if [ "$(uname)" == "Darwin" ];
 then
-  brew install ninja
   GITHUB_RELEASE_TOOL_ARCH="darwin_amd64"
 fi
 
 if [ "$(uname)" == "Linux" ];
 then
-  sudo apt-get update
-  sudo apt-get -y install cmake ninja-build
   GITHUB_RELEASE_TOOL_ARCH="linux_amd64"
 fi
 

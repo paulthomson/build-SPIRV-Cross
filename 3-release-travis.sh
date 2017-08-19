@@ -3,8 +3,6 @@ set -x
 set -e
 set -u
 
-cd SPIRV-Cross
-
 GITHUB_USER=paulthomson
 GITHUB_REPO=build-SPIRV-Cross
 
